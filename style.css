@@ -82,14 +82,19 @@ body {
     filter: invert(1);
 }
 
+/* container */
+.container{
+    min-height: 90vh;
+}
+
 
 .left {
     width: 29vw;
     background-color: rgba(24, 24, 24, 0.844);
-    max-height: 80vh;
     overflow-y: auto;
     margin-right: 8px;
     border-radius: 10px;
+    position: relative;
 }
 
 .right {
@@ -112,42 +117,30 @@ body {
 
 
 /* library section */
+.songList {
+    padding-left: 10px;
+}
+.songList ul li {
+    list-style-type: decimal;
+    padding: 10px;
+    cursor: pointer;
+}
 
-.playlist p:nth-child(3){
-    padding: 8px;
-    width: 105px;
-    border-radius: 30px;
-    margin-top: 20px;
-    background-color: white;
-    color: black;
-    font-weight: bold; 
-    font-size: 14px;
-    display: flex; 
-    justify-content: center;
-}
-.podcasts p:nth-child(3){
-    padding: 8px;
-    width: 130px;
-    border-radius: 30px;
-    margin-top: 20px;
-    background-color: white;
-    color: black;
-    font-weight: bold; 
-    font-size: 14px;
-    display: flex; 
-    justify-content: center; 
-}
+
+
+
+
 
 /* left side last part */
-.for-margin{
-    margin-top: 95px;
+.last{
+    margin-bottom: 10px;
 }
+
 .last ul{
     display: flex;
     font-size: 12px;
     gap: 15px;
     padding-left: 20px;
-    max-height: 5px;
     flex-wrap: wrap;
     
 }
@@ -156,12 +149,7 @@ body {
     cursor: pointer;
 
 }
-.last .cookies{
-    color: white;
-    font-size: 13px;
-   
 
-}
 
 /* Language */
 
@@ -192,7 +180,6 @@ body {
 /* Spotify playlist Trending songs */
 .right{
     padding: 3px 35px;
-      max-height: 80vh;
     overflow-y: scroll;
 
 }
@@ -265,7 +252,7 @@ body {
     bottom: 0;
     width: 90%;
     padding: 12px;
-    background-color: green;
+    background-color: rgb(236, 240, 236);
 }
 .songbutton{
     gap: 15px;
