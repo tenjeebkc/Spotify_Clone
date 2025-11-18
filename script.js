@@ -1,10 +1,22 @@
 
 console.log("JavaScript")
- let currentSong =  new Audio();  // This is the global variable
+let currentSong = new Audio();  // This is the global variable
+
+// Function to convert seconds into minute
+function formatTime(timeInSeconds) {
+  if (isNaN(timeInSeconds)) return "0:00";   // Handle NaN cases
+
+  const totalSeconds = Math.floor(timeInSeconds); // Remove decimals
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
 
 // This function will bring the songs from the server because we are not using backend here
 async function getSongs() {
-    let a = await fetch("http://127.0.0.1:3002/songs/")
+    let a = await fetch("http://127.0.0.1:3000/songs/")
     // a.text() reads whatever text your server sends back from the url
     let response = await a.text()
     let div = document.createElement("div")
@@ -23,10 +35,14 @@ async function getSongs() {
 }
 
 // Making function for playing music
-const playMusic = (track) =>{
+const playMusic = (track) => {
     // let audio = new Audio("/songs/" + track)
     currentSong.src = "/songs/" + track
-    currentSong.play()
+    currentSong.play()  // This will play one song at a time
+    play.src = "pausebtn.svg"   // svg image of pause
+    document.querySelector(".songinfo").innerHTML = track
+    document.querySelector(".songtime").innerHTML = "00 / 00" ///////////
+
 }
 
 // again we need to make aync function because the above function return promise
@@ -55,13 +71,35 @@ async function main() {
 
     // Attach an event listner to each song
     Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", () =>{
+        e.addEventListener("click", () => {
             console.log(e.querySelector(".info").firstElementChild.innerHTML)
             playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim())  // trim will remove additional spaces as it will appear later
-           
+
         })
-            
-        })
+
+    })
+
+    // Attach an event listener to play, next and previous song
+    // Note: You can directly access the btn id like this
+    play.addEventListener("click", () => {
+        if (currentSong.paused) {
+            currentSong.play()
+            play.src = "pausebtn.svg"
+        }
+        else {
+            currentSong.pause()
+            play.src = "playbtn.svg"
+        }
+    })
+
+    // Listen for timeupdate event
+    currentSong.addEventListener("timeupdate", () =>{
+        console.log(currentSong.currentTime, currentSong.duration)
+        document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`
+        
+
+    })
+
 }
 
 main()

@@ -137,7 +137,7 @@ body {
     align-items: center;
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid rgba(255, 255, 255, 0.254);
+    border: 2px solid rgba(255, 255, 255, 0.164);
     margin: 15px 10px;
     overflow-x: hidden;
     font-size: 15px;
@@ -295,25 +295,36 @@ footer {
     position: relative;
 }
 
+
+/* last playbar */
+
 .playbar {
     position: absolute;
     left: 18px;
-    height: 55px;
+    height: 60px;
     bottom: 0;
     width: 96%;
     padding: 5px;
     background-color: rgb(55, 56, 55);
     border-radius: 10px;
+    display: flex;
+   justify-content: space-between;
+}
+
+.songinfo, .songtime{
+    padding: 0 10px;
 }
 
 .songbutton {
     gap: 15px;
     justify-content: center;
+    margin-bottom: 8px;
 
 }
 
 .songbutton img {
     width: 40px;
+    cursor: pointer;
 }
 
 /* seebar */
