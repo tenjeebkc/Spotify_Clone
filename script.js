@@ -1,16 +1,17 @@
 
 console.log("JavaScript")
 let currentSong = new Audio();  // This is the global variable
+let songs;
 
 // Function to convert seconds into minute
 function formatTime(timeInSeconds) {
-  if (isNaN(timeInSeconds)) return "0:00";   // Handle NaN cases
+    if (isNaN(timeInSeconds)) return "0:00";   // Handle NaN cases
 
-  const totalSeconds = Math.floor(timeInSeconds); // Remove decimals
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
+    const totalSeconds = Math.floor(timeInSeconds); // Remove decimals
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
-  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
 
 
@@ -38,7 +39,7 @@ async function getSongs() {
 const playMusic = (track, pause = false) => {
     // let audio = new Audio("/songs/" + track)
     currentSong.src = "/songs/" + track
-    if(!pause){
+    if (!pause) {
         currentSong.play()  // This will play one song at a time
         play.src = "pausebtn.svg"   // svg image of pause
     }
@@ -50,8 +51,8 @@ const playMusic = (track, pause = false) => {
 // again we need to make aync function because the above function return promise
 async function main() {
     // get the list of all the songs
-    let songs = await getSongs()
-    playMusic(songs[0], true )  // Play the first music
+    songs = await getSongs()
+    playMusic(songs[0], true)  // Play the first music
 
     // putting songname inside the ul li of html
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
@@ -82,7 +83,7 @@ async function main() {
 
     })
 
-    // Attach an event listener to play, next and previous song
+    // Attach an event listener to play
     // Note: You can directly access the btn id like this
     play.addEventListener("click", () => {
         if (currentSong.paused) {
@@ -95,32 +96,49 @@ async function main() {
         }
     })
 
+    // Previous button
+    previous.addEventListener("click", () => {
+        let index = songs.indexOf(currentSong.src.split("/").pop());
+        if (index > 0) {
+            playMusic(songs[index - 1]);
+        }
+    });
+
+    // Next button
+    next.addEventListener("click", () => {
+        let index = songs.indexOf(currentSong.src.split("/").pop());
+        if (index < songs.length - 1) {
+            playMusic(songs[index + 1]);
+        }
+    });
+
+
     // Listen for timeupdate event
-    currentSong.addEventListener("timeupdate", () =>{
+    currentSong.addEventListener("timeupdate", () => {
         console.log(currentSong.currentTime, currentSong.duration)
         document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%"
     })
 
     // Add event listener to seekbar (Moving the seekbar)
-    document.querySelector(".seekbar").addEventListener("click" , e=>{
+    document.querySelector(".seekbar").addEventListener("click", e => {
         console.log(e.offsetX)  // at first do console.log(e)
-        let percent = (e.offsetX/e.target.getBoundingClientRect().width) * 100
-        document.querySelector(".circle").style.left = percent + "%" 
+        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
+        document.querySelector(".circle").style.left = percent + "%"
         currentSong.currentTime = ((currentSong.duration) * percent) / 100
 
-        
+
     })
 
     // Add event listener to the hamburger 
-    document.querySelector(".hamburger").addEventListener("click", () =>{
+    document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".left").style.left = 0
         document.querySelector(".leftlogo").style.left = 0
         document.querySelector(".cross").style.left = "320px"
 
     })
     // Add event listener to the cross button
-    document.querySelector(".cross").addEventListener("click", () =>{
+    document.querySelector(".cross").addEventListener("click", () => {
         document.querySelector(".left").style.left = "-120%"
         document.querySelector(".leftlogo").style.left = "-120%"
         document.querySelector(".cross").style.left = "-120%"
@@ -129,14 +147,14 @@ async function main() {
 
     // Reset sidebar when resizing to desktop
     window.addEventListener("resize", () => {
-        if(window.innerWidth > 1400){
+        if (window.innerWidth > 1400) {
             document.querySelector(".left").style.left = ""
             document.querySelector(".leftlogo").style.left = ""
             document.querySelector(".cross").style.left = ""
         }
     })
 
-    // Add event listener to previous and next button
+
 
 }
 
