@@ -368,9 +368,17 @@ footer {
           display: flex;
         justify-content: center;
     }
+    .container{
+        overflow-y: hidden;
+    }
+  
 
     .cardContainer{
         justify-content: center;  
+    }
+
+    .spotifyplaylist h2{
+        padding-left: 20px;
     }
 
     .playbar {
