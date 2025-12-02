@@ -395,6 +395,7 @@ footer {
 
     .cardContainer{
         justify-content: center;  
+        max-width: 280px;
     }
 
     .spotifyplaylist h2{

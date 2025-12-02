@@ -1,8 +1,9 @@
 // List of songs
 const songs = [
     "Hassan_Roshaan-Duur Se.mp3",
-    "Passenger_Let_Her_Go.mp3",
+    "Let_Her_Go.mp3",
     "Under_Your_Spell-Desire(Drive).mp3"
+  
 ]
 
 // Create the audio player object
