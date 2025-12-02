@@ -93,7 +93,7 @@ body {
 
 /* container */
 .container {
-    height: 88vh;
+    height: 90vh;
     position: relative;
 }
 
@@ -343,6 +343,7 @@ footer {
 }
 .range input{
     width: 80px;
+    cursor: pointer;
 }
 
 /* seebar */
@@ -434,7 +435,9 @@ footer {
         min-height: 408px;
     }
     .card img {
-    width: 94%;
+    width: 92%;
     max-height: 90%;
+    padding: 13px 13px;
+
 }
 }
