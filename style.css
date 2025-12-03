@@ -433,7 +433,7 @@ footer {
     .card:hover{
         .play {
          opacity: 1;
-         bottom: 155px;
+         bottom: 150px;
      }
     }
 
