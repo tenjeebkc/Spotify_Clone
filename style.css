@@ -31,27 +31,11 @@ body {
     height: 30px;
 }
 
-.leftlogo ul {
-    display: flex;
-    gap: 10px;
-    padding-left: 15px;
+.leftlogo img{
+    width: 60px;
 }
-
-.leftlogo ul li {
-    display: flex;
-    cursor: pointer;
-}
-
-#netflixlogo {
-    width: 35px;
-    padding-right: 20px;
-}
-
-.logos {
-    width: 22px;
-    border-radius: 20px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.153);
+.leftlogo{
+    padding-left: 35px;
 }
 
 .rightlogo ul {
