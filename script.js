@@ -1,10 +1,25 @@
 // List of songs
 const albums = {
     trending: [
-        "Hassan_Roshaan-Duur_Se.mp3", "Under_Your_Spell-Desire(Drive).mp3"
+        "Hassan_Roshaan-Duur_Se.mp3", 
+        "Under_Your_Spell.mp3",
+        "Let_Her_Go.mp3",
+        "One_Direction-Right-Now.mp3",
+        "A_Real_Hero.mp3",
+        "Chateau.mp3",
+        "End_Of_Beginning.mp3",
+        "Hasan_Raheem-JOONA.mp3",
+        "Iris.mp3",
+        "Mystery_of_Love.mp3",
+        "One_Direction-18.mp3",
+        "One_Last_Time.mp3",
+        "The_Night_We_Met.mp3"
     ],
-    love: [
-        "Let_Her_Go.mp3"
+    coldplay: [
+        "Yellow.mp3",
+        "Til-kingdom-come.mp3",
+        "A-Sky-Full-Of-Stars.mp3",
+        "Fix-You.mp3"
     ]
 }
 
@@ -62,24 +77,22 @@ function attachSongEvents() {
     })
 }
 
-document.querySelectorAll(".album").forEach(e => {
-    e.addEventListener("click", () => {
-
-        playMusic(songs[0])
-    })
-})
-
 const albumElements = document.querySelectorAll(".album");
+
 albumElements.forEach(e => {
     e.addEventListener("click", () => {
-        // Remove 'selected' class from all albums
+        // Remove 'selected' class
         albumElements.forEach(el => el.classList.remove("selected"));
-
-        // Add 'selected' class to clicked album
         e.classList.add("selected");
 
-        // Load the clicked album
+        // Load album FIRST
         loadAlbum(e.dataset.album);
+
+        // Reset index
+        currentIndex = 0;
+
+        // Play first song of album
+        playMusic(songs[0]);
     });
 });
 
@@ -91,11 +104,6 @@ function main() {
 
 main();
 
-document.querySelectorAll(".album").forEach(e => {
-    e.addEventListener("click", () => {
-        loadAlbum(e.dataset.album)
-    })
-})
 
 
 // Add event listener for play/pause

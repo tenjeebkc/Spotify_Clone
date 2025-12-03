@@ -256,6 +256,7 @@ footer {
 
 .card>* {
     padding-left: 10px;
+    padding-right: 10px;
 }
 
 .card img {
@@ -404,7 +405,7 @@ footer {
         align-items: center;
         padding: 0px 4px;
         gap: 2px;
-        bottom: 10px;
+        bottom: 15px;
     }
 
     .songbutton {
